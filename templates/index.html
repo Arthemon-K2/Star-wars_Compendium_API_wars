@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div id="loader" class="position-absolute top-50 start-50 translate-middle"></div>
+
+    <div class="table_details container">
+        <h2 class="table_name">Star Wars universe planets</h2>
+        <button id="previous-btn" class="btn btn-primary">Previous</button>
+        <button id="next-btn" class="btn btn-primary">Next</button>
+    </div>
+    <br>
+    <div id='planetsTable' class="container text-center">
+        <table class="table table-bordered table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Diameter</th>
+                    <th scope="col">Climate</th>
+                    <th scope="col">Terrain</th>
+                    <th scope="col">Surface water</th>
+                    <th scope="col">Population</th>
+                    <th scope="col">Residents</th>
+                </tr>
+            </thead>
+            <tbody id="planetsTableList" onload="loadingIcon()">
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" onload="loadingIcon()">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Residents on selected Planet:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Height</th>
+                                <th scope="col">Mass</th>
+                                <th scope="col">Hair color</th>
+                                <th scope="col">Skin color</th>
+                                <th scope="col">Eye color</th>
+                                <th scope="col">Birth year</th>
+                                <th scope="col">Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody id="residentsTableList" onload="loadingIcon()"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../static/app.js"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="registration_form container text-center">
+        <br>
+        <h2>To register a new user fill the form below:</h2>
+        <br>
+        <p class="system_messages">{{ msg }}</p>
+        <br>
+        <form action="/registration" method="post">
+            <label for="inputUsername">User name:</label><br>
+            <input id="inputUsername" type="text" name="user_name" required oninvalid="this.setCustomValidity('Please, fill in both fields.')"><br><br>
+            <label for="inputPassword">Password:</label><br>
+            <input id="inputPassword" type="password" name="password" required oninvalid="this.setCustomValidity('Please, fill in both fields.')"><br><br>
+            <button class='btn btn-primary' type="submit">Register</button>
+        </form>
+        <br>
+        <form action="/">
+            <button type="submit" class="btn btn-primary">Back</button>
+        </form>
+    </div>
+{% endblock %}
