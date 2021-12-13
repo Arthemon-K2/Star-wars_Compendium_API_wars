@@ -4,6 +4,7 @@ window.onload = function() {
 
 
 const nextBtn = document.getElementById('next-btn');
+const pageCountResult = document.getElementById('page-counter');
 const prevBtn = document.getElementById('previous-btn');
 const tableContainer = document.getElementById('planetsTableList');
 const modalBody = document.getElementById('residentsTableList');
@@ -21,7 +22,8 @@ let residentsBtnIndex = [];
 prevBtn.addEventListener('click', function() {
    if (pageCounter > 1) {
        pageCounter -= 1;
-   clickPrevBtn(httpLink, pageCounter);
+       pageCountResult.innerHTML = pageCounter;
+       clickPrevBtn(httpLink, pageCounter);
    }
 });
 
@@ -29,6 +31,7 @@ prevBtn.addEventListener('click', function() {
 nextBtn.addEventListener('click', function() {
     if (pageCounter !== 6) {
         pageCounter += 1;
+        pageCountResult.innerHTML = pageCounter;
         clickNextBtn(httpLink, pageCounter);
     }
 });
