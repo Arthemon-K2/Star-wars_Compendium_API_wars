@@ -1,24 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="container text-center">
-        <div id="login_box">
-            <br>
-            <h2>Login</h2>
+    <div class="container">
+        <div id="login_box" class="card text-center text-white bg-dark mb-3 position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
+            <h2 class="card-header">Login</h2>
             <br>
             <p class="system_messages">{{ msg }}</p>
             <br>
-            <form action="/login" method="post">
+            <form action="/login" method="post" class="card-body">
                 <label for="user_name">User name:</label><br>
                 <input type="text" id="user_name" name="user_name" required><br><br>
                 <label for="user_password">Password</label><br>
                 <input type="password" id="user_password" name="user_password" required><br><br>
-                <button class='btn btn-primary' type="submit">Login</button>
+                <button class='btn btn-secondary' type="submit">Login</button>
+            </form>
+            <form action="/">
+                <button type="submit" class="btn btn-secondary">Back</button>
             </form>
             <br>
-            <form action="/">
-                <button type="submit" class="btn btn-primary">Back</button>
-            </form>
         </div>
     </div>
 {%  endblock %}

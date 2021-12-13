@@ -91,20 +91,19 @@ function getDefaultdataPlanetrequest(httpLink, pageCounter) {
 
 
 function clickResidentsBtn(residentsUrlsMain, residentsBtnIndex) {
-    console.log('megkattintott gomb: -->', residentsBtnIndex)
     modalBody.innerHTML = '';
     let residentsButtonID = (residentsBtnIndex-1);
     let selectedResidentButtonTarget = residentsUrlsMain[residentsButtonID];
-    console.log(selectedResidentButtonTarget);
+
     for (let linkIndex = 0; linkIndex < selectedResidentButtonTarget.length; linkIndex++) {
         if (selectedResidentButtonTarget.length > 0) {
             let residentsHTTPLink = selectedResidentButtonTarget[linkIndex];
-            console.log('residentsHTTPLink: --->', residentsHTTPLink);
+
             let residentRequest = new XMLHttpRequest();
             residentRequest.open('GET', residentsHTTPLink);
             residentRequest.onload = function () {
                 let residentRequestData = JSON.parse(residentRequest.responseText);
-                console.log(residentRequestData);
+
                 renderResidentsModalTable(residentRequestData);
             };
             residentRequest.send();

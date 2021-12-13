@@ -1,22 +1,21 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="registration_form container text-center">
-        <br>
-        <h2>To register a new user fill the form below:</h2>
+    <div class="registration_form container text-center card text-white bg-dark mb-3 position-absolute top-50 start-50 translate-middle" style="width: 25rem";>
+        <h2 class="card-header">To register a new user fill the form below:</h2>
         <br>
         <p class="system_messages">{{ msg }}</p>
         <br>
-        <form action="/registration" method="post">
+        <form action="/registration" method="post" class="card-body">
             <label for="inputUsername">User name:</label><br>
             <input id="inputUsername" type="text" name="user_name" required oninvalid="this.setCustomValidity('Please, fill in both fields.')"><br><br>
             <label for="inputPassword">Password:</label><br>
             <input id="inputPassword" type="password" name="password" required oninvalid="this.setCustomValidity('Please, fill in both fields.')"><br><br>
-            <button class='btn btn-primary' type="submit">Register</button>
+            <button class='btn btn-secondary' type="submit">Register</button>
+        </form>
+        <form action="/">
+            <button type="submit" class="btn btn-secondary">Back</button>
         </form>
         <br>
-        <form action="/">
-            <button type="submit" class="btn btn-primary">Back</button>
-        </form>
     </div>
 {% endblock %}
