@@ -17,11 +17,11 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/*#loader {*/
-/*    position: fixed;*/
-/*    width: 100%;*/
-/*    height: 100vh;*/
-/*    url('https://c.tenor.com/fc47Cmt6yn4AAAAC/star-wars-disney.gif')*/
-/*    no-repeat center;*/
-/*    z-index: 99999;*/
-/*}*/
+.audio_on_off{
+    background-color: transparent;
+    border: none;
+}
+
+ #audio_on_off_image{
+    height: 15pt;
+}

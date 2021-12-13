@@ -9,11 +9,23 @@ const prevBtn = document.getElementById('previous-btn');
 const tableContainer = document.getElementById('planetsTableList');
 const modalBody = document.getElementById('residentsTableList');
 const httpLink = 'https://swapi.dev/api/planets/';
+const audioSrc = new Audio('../static/music/Star_Wars_Theme_John_Williams.mp3')
 let residentsUrlsMain = [];
 let pageCounter = 1;
 let residentsBtnIndex = [];
 
 
+
+// Background Music:
+
+function playAudio() {
+    audioSrc.play();
+}
+
+
+function pauseAudio() {
+    audioSrc.pause();
+}
 
 
 // Lapozó gombok
