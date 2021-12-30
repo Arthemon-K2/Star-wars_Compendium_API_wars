@@ -16,6 +16,7 @@ let residentsBtnIndex = [];
 
 
 
+
 // Background Music:
 
 function playAudio() {
@@ -35,7 +36,7 @@ prevBtn.addEventListener('click', function() {
    if (pageCounter > 1) {
        pageCounter -= 1;
        pageCountResult.innerHTML = pageCounter;
-       clickPrevBtn(httpLink, pageCounter);
+       clickPrevBtn(httpLink, pageCounter, loggedUser);
    }
 });
 
@@ -44,7 +45,7 @@ nextBtn.addEventListener('click', function() {
     if (pageCounter !== 6) {
         pageCounter += 1;
         pageCountResult.innerHTML = pageCounter;
-        clickNextBtn(httpLink, pageCounter);
+        clickNextBtn(httpLink, pageCounter, loggedUser);
     }
 });
 
@@ -52,39 +53,39 @@ nextBtn.addEventListener('click', function() {
 
 // Függvények
 
-function clickNextBtn(httpLink, pageCounter) {
+function clickNextBtn(httpLink, pageCounter, loggedUser) {
     console.log(pageCounter, residentsUrlsMain);
     const planetRequest = new XMLHttpRequest();
     planetRequest.open('GET', httpLink + '?page=' + pageCounter);
     planetRequest.onload = function () {
         let planetsDataNext = JSON.parse(planetRequest.responseText);
-        renderHTMLtable(planetsDataNext.results);
-        residentsURLWriter(planetsDataNext.results);
+        renderHTMLtable(planetsDataNext.results, loggedUser);
+        residentsURLWriter(planetsDataNext.results, loggedUser);
     };
     planetRequest.send();
 }
 
 
-function clickPrevBtn(httpLink, pageCounter) {
+function clickPrevBtn(httpLink, pageCounter, loggedUser) {
     console.log(pageCounter, residentsUrlsMain);
     const planetRequest = new XMLHttpRequest();
     planetRequest.open('GET', httpLink + '?page=' + pageCounter);
     planetRequest.onload = function () {
         let planetsDataPrev = JSON.parse(planetRequest.responseText);
-        renderHTMLtable(planetsDataPrev.results);
-        residentsURLWriter(planetsDataPrev.results);
+        renderHTMLtable(planetsDataPrev.results, loggedUser);
+        residentsURLWriter(planetsDataPrev.results, loggedUser);
     };
     planetRequest.send();
 }
 
 
-function getDefaultdataPlanetrequest(httpLink, pageCounter) {
+function getDefaultdataPlanetrequest(httpLink, pageCounter, loggedUser) {
     const planetRequest = new XMLHttpRequest();
     planetRequest.open('GET', httpLink + '?page=' + pageCounter);
     planetRequest.onload = function () {
         let planetsData = JSON.parse(planetRequest.responseText);
-        renderHTMLtable(planetsData.results);
-        residentsURLWriter(planetsData.results);
+        renderHTMLtable(planetsData.results, loggedUser);
+        residentsURLWriter(planetsData.results, loggedUser);
     };
     planetRequest.send();
 }
@@ -114,10 +115,17 @@ function clickResidentsBtn(residentsUrlsMain, residentsBtnIndex) {
 }
 
 
-function renderHTMLtable(data) {
+function renderHTMLtable(data, loggedUser) {
     let htmlString = "";
-    for (let index = 0; index < data.length; ++index) {
-        htmlString += `<tr><th scope="row">${index + 1}</th><td>${data[index]['name']}</td><td>${data[index]['diameter']} km</td><td>${data[index]['climate']}</td><td>${data[index]['terrain']}</td><td>${data[index]['surface_water']}%</td><td>${data[index]['population']} people</td><td><button type="button" id="${index + 1}" class="btn btn-light residents-Btn ${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="clickResidentsBtn(residentsUrlsMain, this.id); getResidentsClickedBtnId(this.id)">Residents <span class="badge bg-dark">(${data[index]['residents'].length})</span></button></td></tr>`;
+    console.log('username log', loggedUser);
+    if (loggedUser !== 'Visitor') {
+        for (let index = 0; index < data.length; ++index) {
+            htmlString += `<col span="8" /><col /><tr><th scope="row">${index + 1}</th><td>${data[index]['name']}</td><td>${data[index]['diameter']} km</td><td>${data[index]['climate']}</td><td>${data[index]['terrain']}</td><td>${data[index]['surface_water']}%</td><td>${data[index]['population']} people</td><td><button type="button" id="${index + 1}" class="btn btn-light residents-Btn ${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="clickResidentsBtn(residentsUrlsMain, this.id); getResidentsClickedBtnId(this.id)">Residents <span class="badge bg-dark">(${data[index]['residents'].length})</span></button></td><td><button class="voteBtn ${index + 1} btn btn-secondary">Vote</button></td>`;
+        }
+    } else {
+        for (let index = 0; index < data.length; ++index) {
+            htmlString += `<col span="8" /><col style="visibility: collapse;" /><tr><th scope="row">${index + 1}</th><td>${data[index]['name']}</td><td>${data[index]['diameter']} km</td><td>${data[index]['climate']}</td><td>${data[index]['terrain']}</td><td>${data[index]['surface_water']}%</td><td>${data[index]['population']} people</td><td><button type="button" id="${index + 1}" class="btn btn-light residents-Btn ${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="clickResidentsBtn(residentsUrlsMain, this.id); getResidentsClickedBtnId(this.id)">Residents <span class="badge bg-dark">(${data[index]['residents'].length})</span></button></td>`;
+        }
     }
     tableContainer.innerHTML = htmlString;
 }
@@ -159,6 +167,6 @@ function getResidentsClickedBtnId(clicked_id) {
 
 function main() {
     loadingIcon();
-    getDefaultdataPlanetrequest(httpLink, pageCounter);
+    getDefaultdataPlanetrequest(httpLink, pageCounter, loggedUser);
 }
 
