@@ -117,7 +117,7 @@ function renderHTMLtable(data, loggedUser) {
     let htmlString = "";
     if (loggedUser !== 'Visitor') {
         for (let index = 0; index < data.length; ++index) {
-            htmlString += `<col span="8" /><col /><tr><th scope="row">${index + 1}</th><td>${data[index]['name']}</td><td>${data[index]['diameter']} km</td><td>${data[index]['climate']}</td><td>${data[index]['terrain']}</td><td>${data[index]['surface_water']}%</td><td>${data[index]['population']} people</td><td><button type="button" id="${index + 1}" class="btn btn-light residents-Btn ${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="clickResidentsBtn(residentsUrlsMain, this.id); getResidentsClickedBtnId(this.id)">Residents <span class="badge bg-dark">(${data[index]['residents'].length})</span></button></td><td><button class="voteBtn ${index + 1} btn btn-secondary">Vote</button></td>`;
+            htmlString += `<col span="8" /><col /><tr><th scope="row">${index + 1}</th><td>${data[index]['name']}</td><td>${data[index]['diameter']} km</td><td>${data[index]['climate']}</td><td>${data[index]['terrain']}</td><td>${data[index]['surface_water']}%</td><td>${data[index]['population']} people</td><td><button type="button" id="${index + 1}" class="btn btn-light residents-Btn ${index + 1}" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="clickResidentsBtn(residentsUrlsMain, this.id); getResidentsClickedBtnId(this.id)">Residents <span class="badge bg-dark">(${data[index]['residents'].length})</span></button></td><td><button id="voteBtn ${index + 1}" class="btn btn-secondary">Vote</button></td>`;
         }
     } else {
         for (let index = 0; index < data.length; ++index) {
