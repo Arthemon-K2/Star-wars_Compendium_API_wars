@@ -41,7 +41,7 @@ def login():
 
         user = data_manager.get_user(username)
         
-        if user != None and utils.verify_password(password, user['password']):
+        if user is not None and utils.verify_password(password, user['password']):
             session['username'] = request.form.get('user_name')
             return redirect('/')
         else:

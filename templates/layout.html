@@ -13,7 +13,7 @@
     <title>API Wars | Home page</title>
 </head>
 
-<body onload="loadingIcon()">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">API Wars</a>
@@ -60,9 +60,18 @@
     </nav>
 
 
+    <div class="loader">
+        <img src="/static/star-wars-disney.gif" alt="Loading..." />
+    </div>
+
     {% block content %}{% endblock %}
 
-
+    <script>
+        window.addEventListener("load", function () {
+            const loader = document.querySelector(".loader");
+            loader.className += " hidden";
+        });
+    </script>
 
 </body>
 </html>
